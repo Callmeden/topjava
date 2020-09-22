@@ -61,7 +61,7 @@ public class UserMealsUtil {
 
             UserMealWithExcess mealWithExcess = new UserMealWithExcess(dateTime,description,calories,excess);
 
-            if(time.isAfter(startTime) && time.isBefore(endTime))
+            if(time.equals(startTime) || time.isAfter(startTime) && time.isBefore(endTime))
                 mealsAfterFiltering.add(mealWithExcess);
         }
 
@@ -83,7 +83,7 @@ public class UserMealsUtil {
                         meal.getDescription(),
                         meal.getCalories(),
                         caloriesAmountPerDay.get(meal.getDateTime().toLocalDate())<= caloriesPerDay))
-                .filter(meal -> meal.getDateTime().toLocalTime().isAfter(startTime))
+                .filter(meal -> meal.getDateTime().toLocalTime().isAfter(startTime) || meal.getDateTime().toLocalTime().equals(startTime))
                 .filter(meal -> meal.getDateTime().toLocalTime().isBefore(endTime))
                 .collect(Collectors.toList());
     }
