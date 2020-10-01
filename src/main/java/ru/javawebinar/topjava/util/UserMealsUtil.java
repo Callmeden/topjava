@@ -83,8 +83,7 @@ public class UserMealsUtil {
                         meal.getDescription(),
                         meal.getCalories(),
                         caloriesAmountPerDay.get(meal.getDateTime().toLocalDate())<= caloriesPerDay))
-                .filter(meal -> meal.getDateTime().toLocalTime().isAfter(startTime) || meal.getDateTime().toLocalTime().equals(startTime))
-                .filter(meal -> meal.getDateTime().toLocalTime().isBefore(endTime))
+                .filter(meal -> TimeUtil.isBetweenHalfOpen(meal.getDateTime().toLocalTime(), startTime, endTime))
                 .collect(Collectors.toList());
     }
 }
