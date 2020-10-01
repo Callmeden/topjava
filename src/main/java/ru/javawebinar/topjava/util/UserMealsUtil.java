@@ -61,7 +61,7 @@ public class UserMealsUtil {
 
             UserMealWithExcess mealWithExcess = new UserMealWithExcess(dateTime,description,calories,excess);
 
-            if(time.equals(startTime) || time.isAfter(startTime) && time.isBefore(endTime))
+            if(TimeUtil.isBetweenHalfOpen(time, startTime, endTime))
                 mealsAfterFiltering.add(mealWithExcess);
         }
 
